@@ -14,6 +14,7 @@ import {createStore} from 'redux';
 import {Provider} from 'react-redux';
 import reducers from './src/reducers';
 import LibraryList from './src/components/LibraryList';
+import colors from './config/colors';
 
 const App = () => {
   const {container} = styles;
@@ -30,6 +31,7 @@ const App = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor : colors.base
   },
 });
 

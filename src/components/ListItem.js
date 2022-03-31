@@ -1,36 +1,38 @@
-import React from 'react';
+import React, {Component} from 'react';
 import {View, StyleSheet, Text, TouchableHighlight} from 'react-native';
 import colors from './../../config/colors';
 import * as actions from './../actions';
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
+import {render} from 'react-native/Libraries/Renderer/implementations/ReactNativeRenderer-prod';
 
-const ListItem = ({title, description}) => {
-  const {itemContainer, titleStyle, descriptionStyle, titleContainer} = styles;
+class ListItem extends Component {
+  render() {
+    const {itemContainer, titleStyle, descriptionStyle, titleContainer} =
+      styles;
+    const {id, title, description} = this.props;
 
-    const resize = () =>{
-        console.log(descriptionStyle.backgroundColor)
-    }
-
-
-  return (
-    <TouchableHighlight onPress={resize}>
-      <View style={itemContainer}>
-        <View style={titleContainer}>
-          <Text style={titleStyle}>{title}</Text>
+    return (
+      <TouchableHighlight onPress={this.props.selectLibrary(id)}>
+        <View style={itemContainer}>
+          <View style={titleContainer}>
+            <Text style={titleStyle}>{title}</Text>
+          </View>
+          <Text style={descriptionStyle}>{description}</Text>
         </View>
-        <Text style={descriptionStyle}>{description}</Text>
-      </View>
-    </TouchableHighlight>
-  );
-};
+      </TouchableHighlight>
+    );
+  }
+}
+
+//} ({id, title, description}) => {
 
 const styles = StyleSheet.create({
   itemContainer: {
     flex: 1,
   },
   titleContainer: {
-      borderBottomWidth: 6,
-      borderBottomColor : colors.secondary
+    borderBottomWidth: 6,
+    borderBottomColor: colors.secondary,
   },
   titleStyle: {
     flex: 1,
@@ -41,19 +43,16 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     textTransform: 'uppercase',
     color: colors.secondary,
-   
   },
   descriptionStyle: {
     backgroundColor: colors.base,
     fontSize: 20,
     padding: 10,
-    display: 'none'
+    display: 'none',
   },
 });
 
-
-
-export default connect(null,actions)(ListItem);
+export default connect(null, actions)(ListItem);
 /*
 El primer parámetro de connect debe ser si o si mapstatetoprops, en este caso como no vamos a mapear
 props al componente sino pasarle acciones indicamos que la funcion será null

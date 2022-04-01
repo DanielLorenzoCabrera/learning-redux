@@ -1,30 +1,39 @@
 import React, {Component} from 'react';
-import {View, StyleSheet, Text, TouchableHighlight} from 'react-native';
+import {View, StyleSheet, Text, TouchableWithoutFeedback} from 'react-native';
 import colors from './../../config/colors';
 import * as actions from './../actions';
 import {connect} from 'react-redux';
-import {render} from 'react-native/Libraries/Renderer/implementations/ReactNativeRenderer-prod';
 
 class ListItem extends Component {
-  render() {
-    const {itemContainer, titleStyle, descriptionStyle, titleContainer} =
-      styles;
-    const {id, title, description} = this.props;
+  isItemSelected() {
+    const {id, selectedId} = this.props;
+    return id === selectedId;
+  }
 
+  render() {
+    const {
+      itemContainer,
+      titleStyle,
+      descriptionStyle,
+      titleContainer,
+      selected,
+      notSelected,
+    } = styles;
+    const selection = this.isItemSelected() ? selected : notSelected;
+    const {id, title, description} = this.props;
+    console.log(this.props.selectedId);
     return (
-      <TouchableHighlight onPress={this.props.selectLibrary(id)}>
+      <TouchableWithoutFeedback onPress={() => this.props.selectLibrary(id)}>
         <View style={itemContainer}>
           <View style={titleContainer}>
             <Text style={titleStyle}>{title}</Text>
           </View>
-          <Text style={descriptionStyle}>{description}</Text>
+          <Text style={[descriptionStyle, selection]}>{description}</Text>
         </View>
-      </TouchableHighlight>
+      </TouchableWithoutFeedback>
     );
   }
 }
-
-//} ({id, title, description}) => {
 
 const styles = StyleSheet.create({
   itemContainer: {
@@ -48,11 +57,22 @@ const styles = StyleSheet.create({
     backgroundColor: colors.base,
     fontSize: 20,
     padding: 10,
+  },
+  selected: {
+    display: 'flex',
+  },
+  notSelected: {
     display: 'none',
   },
 });
 
-export default connect(null, actions)(ListItem);
+const mapStateToProps = state => {
+  return {
+    selectedId: state.selectedLibraryId,
+  };
+};
+
+export default connect(mapStateToProps, actions)(ListItem);
 /*
 El primer parámetro de connect debe ser si o si mapstatetoprops, en este caso como no vamos a mapear
 props al componente sino pasarle acciones indicamos que la funcion será null

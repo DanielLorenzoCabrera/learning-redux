@@ -2,7 +2,7 @@ import React from "react";
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import LibraryList from "./components/LibraryList";
-import { WebpackItem, ReactItem , ReduxItem} from "./components/LibraryItems";
+import { WebpackItem, ReactItem , ReduxItem, LodashItem, ThunkItem, EslintItem} from "./components/LibraryItems";
 const Stack = createNativeStackNavigator();
 
 const RootComponent = () => {
@@ -28,6 +28,21 @@ const RootComponent = () => {
             name="redux"
             component={ReduxItem}
             options={{ title: 'Redux' }}
+          />
+          <Stack.Screen
+            name="lodash"
+            component={LodashItem}
+            options={{ title: 'Lodash' }}
+          />
+          <Stack.Screen
+            name="thunk"
+            component={ThunkItem}
+            options={{ title: 'Thunk' }}
+          />
+          <Stack.Screen
+            name="eslint"
+            component={EslintItem}
+            options={{ title: 'Eslint' }}
           />
       </Stack.Navigator>
     </NavigationContainer>

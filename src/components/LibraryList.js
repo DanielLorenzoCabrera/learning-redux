@@ -1,11 +1,12 @@
 import React, {Component} from "react";
 import { connect } from "react-redux";
-import {Text, FlatList, StyleSheet} from "react-native";
+import {FlatList, StyleSheet} from "react-native";
 import ListItem from "./ListItem";
 
 
 class LibraryList extends Component {
-    render(){
+  render(){
+        const {navigation} = this.props;
         const {list, contentContainer} = styles;
         return(
         <FlatList
@@ -13,7 +14,7 @@ class LibraryList extends Component {
         style={list}
         data={this.props.libraries}
         renderItem={({item}) => {
-           return  <ListItem id={item.id} title={item.title} description={item.description} />
+           return  <ListItem id={item.id} title={item.title} description={item.description} navigation={navigation} />
         }}/>
         )
     }

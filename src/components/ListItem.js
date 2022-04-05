@@ -9,6 +9,7 @@ import {
 import colors from './../../config/colors';
 import * as actions from './../actions';
 import {connect} from 'react-redux';
+import RedirectButton from './RedirectButton';
 
 class ListItem extends Component {
   isItemSelected() {
@@ -24,25 +25,27 @@ class ListItem extends Component {
       titleContainer,
       selected,
       notSelected,
-      seeMore
     } = styles;
     const selection = this.isItemSelected() ? selected : notSelected;
-    const {id, title, description} = this.props;
+    const {id, title, description, navigation} = this.props;
 
     return (
-      <TouchableWithoutFeedback onPress={() => this.props.selectLibrary(id)}>
-        <View style={itemContainer}>
-          <View style={titleContainer}>
-            <Text style={titleStyle}>{title}</Text>
+      <View>
+        <TouchableWithoutFeedback onPress={() => this.props.selectLibrary(id)}>
+          <View style={itemContainer}>
+            <View style={titleContainer}>
+              <Text style={titleStyle}>{title}</Text>
+            </View>
+            <View style={selection}>
+              <Text style={descriptionStyle}>{description}</Text>
+              <RedirectButton
+                textButton={'see more'}
+                onPress={() => navigation.navigate(title,{})}
+              />
+            </View>
           </View>
-          <View style={selection}>
-            <Text style={descriptionStyle}>{description}</Text>
-            <TouchableWithoutFeedback >
-              <Button title="See more"/>
-            </TouchableWithoutFeedback>
-          </View>
-        </View>
-      </TouchableWithoutFeedback>
+        </TouchableWithoutFeedback>
+      </View>
     );
   }
 }
@@ -76,7 +79,6 @@ const styles = StyleSheet.create({
   notSelected: {
     display: 'none',
   },
-  
 });
 
 const mapStateToProps = state => {

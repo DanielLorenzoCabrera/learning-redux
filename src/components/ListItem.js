@@ -1,5 +1,11 @@
 import React, {Component} from 'react';
-import {View, StyleSheet, Text, TouchableWithoutFeedback} from 'react-native';
+import {
+  View,
+  StyleSheet,
+  Text,
+  TouchableWithoutFeedback,
+  Button,
+} from 'react-native';
 import colors from './../../config/colors';
 import * as actions from './../actions';
 import {connect} from 'react-redux';
@@ -18,17 +24,23 @@ class ListItem extends Component {
       titleContainer,
       selected,
       notSelected,
+      seeMore
     } = styles;
     const selection = this.isItemSelected() ? selected : notSelected;
     const {id, title, description} = this.props;
-    console.log(this.props.selectedId);
+
     return (
       <TouchableWithoutFeedback onPress={() => this.props.selectLibrary(id)}>
         <View style={itemContainer}>
           <View style={titleContainer}>
             <Text style={titleStyle}>{title}</Text>
           </View>
-          <Text style={[descriptionStyle, selection]}>{description}</Text>
+          <View style={selection}>
+            <Text style={descriptionStyle}>{description}</Text>
+            <TouchableWithoutFeedback >
+              <Button title="See more"/>
+            </TouchableWithoutFeedback>
+          </View>
         </View>
       </TouchableWithoutFeedback>
     );
@@ -64,6 +76,7 @@ const styles = StyleSheet.create({
   notSelected: {
     display: 'none',
   },
+  
 });
 
 const mapStateToProps = state => {

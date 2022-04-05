@@ -15,6 +15,7 @@ import {Provider} from 'react-redux';
 import reducers from './src/reducers';
 import LibraryList from './src/components/LibraryList';
 import colors from './config/colors';
+import RootComponent from './src/RootComponent';
 
 const App = () => {
   const {container} = styles;
@@ -22,7 +23,7 @@ const App = () => {
   return (
     <Provider store={createStore(reducers)}>
       <SafeAreaView style={container}>
-        <LibraryList/>
+        <RootComponent/>
       </SafeAreaView>
     </Provider>
   );

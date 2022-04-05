@@ -3,8 +3,8 @@ import DisplayItem from '../DisplayItem';
 import data from '../../LibraryExtended';
 
 const ReduxItem = () => {
-  const {img, content} = data.redux;
-  return <DisplayItem imageRoute={img} content={content} />;
+  const {img, content, url} = data.redux;
+  return <DisplayItem imageRoute={img} content={content} url={url}/>;
 };
 
 export {ReduxItem};

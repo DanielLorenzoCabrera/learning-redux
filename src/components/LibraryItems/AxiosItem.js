@@ -3,8 +3,8 @@ import DisplayItem from '../DisplayItem';
 import data from '../../LibraryExtended';
 
 const AxiosItem = () => {
-  const {img, content} = data.axios;
-  return <DisplayItem imageRoute={img} content={content} />;
+  const {img, content, url} = data.axios;
+  return <DisplayItem imageRoute={img} content={content} url={url} />;
 };
 
 export {AxiosItem};

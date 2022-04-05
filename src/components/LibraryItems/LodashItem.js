@@ -3,8 +3,8 @@ import DisplayItem from '../DisplayItem';
 import data from '../../LibraryExtended';
 
 const LodashItem = () => {
-  const {img, content} = data.lodash;
-  return <DisplayItem imageRoute={img} content={content} />;
+  const {img, content, url} = data.lodash;
+  return <DisplayItem imageRoute={img} content={content} url={url}/>;
 };
 
 export {LodashItem};

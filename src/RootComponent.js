@@ -12,6 +12,8 @@ import {
   BabelItem,
   AxiosItem,
 } from './components/LibraryItems';
+
+import Home from './components/Home';
 const Stack = createNativeStackNavigator();
 
 const RootComponent = () => {
@@ -20,7 +22,7 @@ const RootComponent = () => {
       <Stack.Navigator>
         <Stack.Screen
           name="LibraryList"
-          component={LibraryList}
+          component={Home}
           options={{title: 'Home'}}
         />
         <Stack.Screen

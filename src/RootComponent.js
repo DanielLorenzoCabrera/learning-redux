@@ -76,7 +76,7 @@ class RootComponent extends Component {
             <Stack.Screen
               name="about"
               component={About}
-              options={{title: 'About'}}
+              options={{title: 'About',headerBackVisible:false}}
             />
           </Stack.Navigator>
         </NavigationContainer>

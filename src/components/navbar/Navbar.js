@@ -29,7 +29,7 @@ class Navbar extends Component {
 const styles = StyleSheet.create({
   navbarContainer: {
     width: '100%',
-    flex: 1 / 10,
+    height : '10%',
     flexDirection: 'row',
     padding: 10,
     marginTop: 20,

@@ -14,11 +14,11 @@ const {container, titleStyle, contentStyle} = styles;
 
 const styles = StyleSheet.create({
   container : {
-      flex: 1,
       borderColor : colors.primary,
       borderWidth : 4,
       flexDirection : 'column',
-      justifyContent : 'space-around'
+      justifyContent : 'space-around',
+      minHeight : 700
   },
   titleStyle : {},
   contentStyle : {}

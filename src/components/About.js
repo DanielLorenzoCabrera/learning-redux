@@ -9,7 +9,7 @@ class About extends Component {
     const {navigation} = this.props;
     return (
       <View style={aboutContainer}>
-        <ScrollView contentContainerStyle={{flex :1}}>
+        <ScrollView >
           <Resume />
           <Section title={'amistad de la buena'} content={'rferfrfe rf erf erferferf erfer f erf er fer ferf er f erf er fe rf erf er f erf erferf erf erf ef erf erferf e'}/>
         </ScrollView>

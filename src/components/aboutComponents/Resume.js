@@ -21,7 +21,8 @@ const Resume = () => {
 
 const styles = StyleSheet.create({
   resume: {
-    flex: 1,
+    height : 300,
+    width : '100%',
     flexDirection : 'column',
     alignItems: 'center',
     justifyContent : 'space-around'

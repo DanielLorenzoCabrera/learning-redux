@@ -11,7 +11,7 @@ class Home extends Component {
     return (
       <View style={homeContainer}>
           <LibraryList navigation={navigation}/>
-          <Navbar/>
+          <Navbar navigation={navigation}/>
       </View>
     );
   }

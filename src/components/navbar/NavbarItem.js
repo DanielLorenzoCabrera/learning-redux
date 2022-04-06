@@ -1,13 +1,11 @@
 import React, {Component} from 'react';
 import {View, StyleSheet, Image, TouchableWithoutFeedback} from 'react-native';
-import colors from '../../../config/colors';
-
 class NavbarItem extends Component {
   render() {
     const {navbarItemContainer, imageStyle} = styles;
-    const {itemImage} = this.props;
+    const {itemImage, onPress} = this.props;
     return (
-      <TouchableWithoutFeedback onPress={()=> console.log('amistad')}>
+      <TouchableWithoutFeedback onPress={onPress}>
         <View style={navbarItemContainer}>
           <Image style={imageStyle} source={itemImage} />
         </View>
@@ -25,7 +23,7 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'center',
-    alignItems: 'center',
+    alignItems: 'center'
   },
   imageStyle: {
     flex: 1,

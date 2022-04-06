@@ -5,14 +5,18 @@ import navbarImages from './navbarImages';
 import colors from '../../../config/colors';
 
 class Navbar extends Component {
+    navigateTo(route, options = {}){
+        const {navigation} = this.props;
+        navigation.navigate(route, options)
+    }
+
+
   render() {
     const {navbarContainer} = styles;
     return (
       <View style={navbarContainer}>
-        <NavbarItem itemImage={navbarImages.home}/>
-        <NavbarItem itemImage={navbarImages.user}/>
-        
-        
+        <NavbarItem itemImage={navbarImages.home} onPress={()=> this.navigateTo("home")}/>
+        <NavbarItem itemImage={navbarImages.user} onPress={()=> this.navigateTo('about')}/>
       </View>
     );
   }
@@ -24,7 +28,7 @@ const styles = StyleSheet.create({
     flex: 1/10,
     flexDirection : 'row',
     padding : 10,
-    marginTop : 20
+    marginTop : 20,
   },
 });
 

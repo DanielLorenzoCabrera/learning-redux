@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import LibraryList from './components/LibraryList';
+import About from './components/About'
 import {
   WebpackItem,
   ReactItem,
@@ -29,7 +29,7 @@ class RootComponent extends Component {
         <NavigationContainer>
           <Stack.Navigator>
             <Stack.Screen
-              name="LibraryList"
+              name="home"
               component={Home}
               options={{title: 'Home'}}
             />
@@ -72,6 +72,11 @@ class RootComponent extends Component {
               name="axios"
               component={AxiosItem}
               options={{title: 'Axios'}}
+            />
+            <Stack.Screen
+              name="about"
+              component={About}
+              options={{title: 'About'}}
             />
           </Stack.Navigator>
         </NavigationContainer>

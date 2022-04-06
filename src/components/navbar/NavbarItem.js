@@ -2,32 +2,35 @@ import React, {Component} from 'react';
 import {View, StyleSheet, Image, TouchableWithoutFeedback} from 'react-native';
 class NavbarItem extends Component {
   render() {
-    const {navbarItemContainer, imageStyle} = styles;
+    const {navbarItemContainer, imageStyle, touchable} = styles;
     const {itemImage, onPress} = this.props;
     return (
-      <TouchableWithoutFeedback onPress={onPress}>
-        <View style={navbarItemContainer}>
-          <Image style={imageStyle} source={itemImage} />
-        </View>
-      </TouchableWithoutFeedback>
+      <View style={navbarItemContainer}>
+        <TouchableWithoutFeedback style={touchable} onPress={onPress}>
+          <View style={{flex:1}}>
+            <Image style={imageStyle} source={itemImage} />
+          </View>
+        </TouchableWithoutFeedback>
+      </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
   navbarItemContainer: {
+    marginHorizontal: 5,
+    flex: 1,
     borderWidth: 1,
     borderColor: 'black',
     borderRadius: 30,
-    marginHorizontal: 5,
+  },
+  touchable: {
     flex: 1,
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center'
   },
   imageStyle: {
     flex: 1,
     resizeMode: 'contain',
+    maxWidth : '100%'
   },
 });
 

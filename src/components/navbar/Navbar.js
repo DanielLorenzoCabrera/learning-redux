@@ -2,21 +2,25 @@ import React, {Component} from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import NavbarItem from './NavbarItem';
 import navbarImages from './navbarImages';
-import colors from '../../../config/colors';
 
 class Navbar extends Component {
-    navigateTo(route, options = {}){
-        const {navigation} = this.props;
-        navigation.navigate(route, options)
-    }
-
+  navigateTo(route, options = {}) {
+    const {navigation} = this.props;
+    navigation.navigate(route, options);
+  }
 
   render() {
     const {navbarContainer} = styles;
     return (
       <View style={navbarContainer}>
-        <NavbarItem itemImage={navbarImages.home} onPress={()=> this.navigateTo("home")}/>
-        <NavbarItem itemImage={navbarImages.user} onPress={()=> this.navigateTo('about')}/>
+        <NavbarItem
+          itemImage={navbarImages.home}
+          onPress={() => this.navigateTo('home')}
+        />
+        <NavbarItem
+          itemImage={navbarImages.user}
+          onPress={() => this.navigateTo('about')}
+        />
       </View>
     );
   }
@@ -25,10 +29,10 @@ class Navbar extends Component {
 const styles = StyleSheet.create({
   navbarContainer: {
     width: '100%',
-    flex: 1/10,
-    flexDirection : 'row',
-    padding : 10,
-    marginTop : 20,
+    flex: 1 / 10,
+    flexDirection: 'row',
+    padding: 10,
+    marginTop: 20,
   },
 });
 

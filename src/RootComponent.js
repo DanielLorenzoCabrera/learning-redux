@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import About from './components/About'
+import { Todo } from './components/Todo';
 import {
   WebpackItem,
   ReactItem,
@@ -28,6 +29,11 @@ class RootComponent extends Component {
       <Provider store={createStore(reducers)}>
         <NavigationContainer>
           <Stack.Navigator>
+          <Stack.Screen
+              name="todo"
+              component={Todo}
+              options={{title: 'Todo',headerBackVisible:false}}
+            />
             <Stack.Screen
               name="home"
               component={Home}

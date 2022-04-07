@@ -1,17 +1,18 @@
 import React, {Component} from 'react';
 import {StyleSheet, View} from 'react-native';
-import {TodoInput} from './ToDoComponents';
+import TodoInput from './ToDoComponents/TodoInput';
 import Navbar from './navbar/Navbar';
-import { TaskBoard } from './ToDoComponents';
+import {TaskBoard} from './ToDoComponents/';
 
 class Todo extends Component {
   render() {
-      const {board} = styles;
+    const {board} = styles;
+   
     return (
       <View style={board}>
-          <TaskBoard></TaskBoard>
+        <TaskBoard></TaskBoard>
         <TodoInput />
-        <Navbar/>
+        <Navbar />
       </View>
     );
   }
@@ -20,8 +21,8 @@ class Todo extends Component {
 const styles = StyleSheet.create({
   board: {
     flex: 1,
-    flexDirection : 'column',
-    justifyContent : 'space-around',
+    flexDirection: 'column',
+    justifyContent: 'space-around',
   },
 });
 

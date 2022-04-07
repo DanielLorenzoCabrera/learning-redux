@@ -11,3 +11,10 @@ export const changeScreen = (screenKey) => {
         payload : screenKey 
     }
 }
+
+export const add_task = (task) => {
+    return {
+        type : "add_task",
+        payload : task 
+    }
+}

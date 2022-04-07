@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     fontSize: 20,
     lineHeight: 40,
-    backgroundColor: colors.base,
+    backgroundColor: colors.base
   },
 });
 

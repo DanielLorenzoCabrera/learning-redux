@@ -1,24 +1,37 @@
 import React, {Component} from 'react';
-import {View, Text, StyleSheet, ScrollView} from 'react-native';
+import {View, StyleSheet, FlatList} from 'react-native';
 import Navbar from './navbar/Navbar';
 import colors from '../../config/colors';
 import {Resume, Section} from './aboutComponents';
+import AboutInfo from './aboutComponents/AboutInfo';
+import RedirectButton from './RedirectButton';
+
 class About extends Component {
   render() {
+    const {name, job_position, skills} = AboutInfo;
     const {aboutContainer} = styles;
     const {navigation} = this.props;
     return (
-      <View style={aboutContainer}>
-        <ScrollView >
-          <Resume />
-          <Section title={'amistad de la buena'} content={'rferfrfe rf erf erferferf erfer f erf er fer ferf er f erf er fe rf erf er f erf erferf erf erf ef erf erferf e'}/>
-        </ScrollView>
+        <View style={aboutContainer}>
+          <Resume nameText={name} jobPosition={job_position} />
+            <FlatList
+              contentContainerStyle={{}}
+              data={skills}
+              renderItem={({item}) => {
+                return (
+                  <Section
+                    title={item.title}
+                    content={item.description}
+                    theme={item.theme}
+                  />
+                );
+              }}
+            />
           <Navbar navigation={navigation} />
-      </View>
+        </View>
     );
   }
 }
-
 const styles = StyleSheet.create({
   aboutContainer: {
     flex: 1,

@@ -21,7 +21,6 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     padding: 10,
     alignItems: 'flex-end',
-    backgroundColor : colors.base,
   },
   buttonStyle : {
       color: colors.primary,
@@ -35,6 +34,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 20,
     fontWeight: 'bold',
+    color : colors.primary
   },
 });
 

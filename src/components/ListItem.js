@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     fontWeight: 'bold',
     textTransform: 'uppercase',
-    color: colors.secondary,
+    color: colors.base,
   },
   descriptionStyle: {
     backgroundColor: colors.base,

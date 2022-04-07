@@ -1,16 +1,25 @@
 import React,{Component} from "react";
-import {ScrollView, StyleSheet} from 'react-native';
+import {FlatList, StyleSheet} from 'react-native';
 import {TaskItem} from './';
+import { connect } from "react-redux";
 
 class TaskBoard extends Component{
     render(){
+        const {tasks} = this.props
         const {board} = styles;
+        console.log(tasks)
         return(
-            <ScrollView contentContainerStyle={board} >
-                <TaskItem taskText={'default to do item'}></TaskItem>
-                <TaskItem taskText={'default to do item'}></TaskItem>
-                <TaskItem taskText={'default to do item'}></TaskItem>
-            </ScrollView>
+            <FlatList
+            contentContainerStyle={{}}
+            style={{flex:1, backgroundColor: 'red'}}
+            data={tasks}
+            renderItem={({item}) => {
+                return (   
+                    <TaskItem taskText={item.content} keyExtractor={item.id}>
+                    </TaskItem>
+              );
+            }}
+          />
         )
     }
 }
@@ -22,4 +31,10 @@ const styles = StyleSheet.create({
     }
 })
 
-export {TaskBoard}
+const mapStateToProps = state =>{
+    return {
+        tasks : state.tasks.tasks
+    }
+}
+
+export default connect(mapStateToProps)(TaskBoard);

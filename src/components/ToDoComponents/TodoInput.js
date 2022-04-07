@@ -22,7 +22,6 @@ class TodoInput extends Component {
   render() {
     const {add_task} = this.props;
     const {container, inputStyle} = styles;
-    console.log(this)
     return (
       <View style={container}>
         <TextInput
@@ -51,9 +50,7 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = state => {
-  return {
-    tasks: state.tasks,
-  };
+  return {}
 };
 
 export default connect(mapStateToProps, actions)(TodoInput);

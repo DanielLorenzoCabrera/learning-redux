@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {StyleSheet, View} from 'react-native';
 import TodoInput from './ToDoComponents/TodoInput';
 import Navbar from './navbar/Navbar';
-import {TaskBoard} from './ToDoComponents/';
+import TaskBoard from './ToDoComponents/TaskBoard';
 
 class Todo extends Component {
   render() {

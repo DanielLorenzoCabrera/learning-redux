@@ -42,6 +42,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.secondary,
     borderRadius: 10,
     flex : 1,
+    marginHorizontal : 10
     
   },
   closeTagText: {

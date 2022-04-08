@@ -4,24 +4,27 @@ import {FlatList, StyleSheet} from 'react-native';
 import ListItem from './ListItem';
 
 class LibraryList extends Component {
-  render() {
+  
+  renderItem = ({item}) => {
     const {navigation} = this.props;
+    return (
+      <ListItem
+        id={item.id}
+        title={item.title}
+        description={item.description}
+        navigation={navigation}
+      />
+    );
+  };
+
+  render() {
     const {list, contentContainer} = styles;
     return (
-        <FlatList
+      <FlatList
         contentContainerStyle={contentContainer}
         style={list}
         data={this.props.libraries}
-        renderItem={({item}) => {
-            return (
-                <ListItem
-                id={item.id}
-                title={item.title}
-              description={item.description}
-              navigation={navigation}
-            />
-          );
-        }}
+        renderItem={this.renderItem}
       />
     );
   }

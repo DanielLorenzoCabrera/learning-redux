@@ -3,16 +3,17 @@ import {StyleSheet, View} from 'react-native';
 import TodoInput from './ToDoComponents/TodoInput';
 import Navbar from './navbar/Navbar';
 import TaskBoard from './ToDoComponents/TaskBoard';
+import colors from '../../config/colors';
 
 class Todo extends Component {
   render() {
     const {board} = styles;
-   
+   console.log(this.props)
     return (
       <View style={board}>
         <TaskBoard></TaskBoard>
         <TodoInput />
-        <Navbar />
+        <Navbar navigation={this.props.navigation} />
       </View>
     );
   }
@@ -23,6 +24,7 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'space-around',
+    backgroundColor : colors.base
   },
 });
 

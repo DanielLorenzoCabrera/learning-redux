@@ -1,6 +1,7 @@
 import React, {Component, useState} from 'react';
 import {TextInput, StyleSheet, View, Alert} from 'react-native';
 import {connect} from 'react-redux';
+import colors from '../../../config/colors';
 import * as actions from '../../actions/';
 
 class TodoInput extends Component {
@@ -14,13 +15,14 @@ class TodoInput extends Component {
     const {content} = this.state;
     if(content.trim() === ''){
       Alert.alert("Tasks text can't be empty. Please fill the input")
+      this.setState({content : ''})
       return;
     }
     this.props.add_task(content);
+    this.setState({content : ''})
   }
 
   render() {
-    const {add_task} = this.props;
     const {container, inputStyle} = styles;
     return (
       <View style={container}>
@@ -28,7 +30,8 @@ class TodoInput extends Component {
           style={inputStyle}
           placeholder={'Write your task'}
           onChangeText={text => this.updateText(text)}
-          onSubmitEditing={() => this.submitText()}></TextInput>
+          onSubmitEditing={() => this.submitText()}
+          value={this.state.content}></TextInput>
       </View>
     );
   }
@@ -36,10 +39,14 @@ class TodoInput extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#fff',
+    borderTopColor : colors.secondary,
+    borderBottomColor : colors.secondary,
+    borderBottomWidth : 5,
+    borderTopWidth : 5,
     flexDirection: 'column',
     justifyContent: 'flex-end',
     padding: 5,
+    backgroundColor : colors.secondary
   },
   inputStyle: {
     paddingVertical: 20,
@@ -50,7 +57,7 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = state => {
-  return {}
+  return {state};
 };
 
 export default connect(mapStateToProps, actions)(TodoInput);

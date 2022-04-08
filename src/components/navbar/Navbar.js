@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, StyleSheet} from 'react-native';
 import NavbarItem from './NavbarItem';
 import navbarImages from './navbarImages';
+import colors from '../../../config/colors';
 
 class Navbar extends Component {
   navigateTo(route, options = {}) {
@@ -16,6 +17,10 @@ class Navbar extends Component {
         <NavbarItem
           itemImage={navbarImages.home}
           onPress={() => this.navigateTo('home')}
+        />
+        <NavbarItem
+          itemImage={navbarImages.todo}
+          onPress={() => this.navigateTo('todo')}
         />
         <NavbarItem
           itemImage={navbarImages.user}
@@ -33,6 +38,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     padding: 10,
     marginTop: 20,
+    backgroundColor : colors.base
   },
 });
 

@@ -12,9 +12,16 @@ export const changeScreen = (screenKey) => {
     }
 }
 
-export const add_task = (task) => {
+export const add_task = (taskText) => {
     return {
         type : "add_task",
-        payload : task 
+        payload : taskText 
+    }
+}
+
+export const delete_task = (taskId) => {
+    return {
+        type : "delete_task",
+        payload : taskId
     }
 }

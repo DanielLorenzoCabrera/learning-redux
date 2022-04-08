@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import About from './components/About'
-import { Todo } from './components/Todo';
+import About from './components/About';
+import {Todo} from './components/Todo';
 import {
   WebpackItem,
   ReactItem,
@@ -18,8 +18,7 @@ import Home from './components/Home';
 import {Provider, connect} from 'react-redux';
 import {createStore} from 'redux';
 import reducers from './reducers';
-import actions from './actions'
-
+import actions from './actions';
 
 const Stack = createNativeStackNavigator();
 
@@ -29,15 +28,15 @@ class RootComponent extends Component {
       <Provider store={createStore(reducers)}>
         <NavigationContainer>
           <Stack.Navigator>
-          <Stack.Screen
-              name="todo"
-              component={Todo}
-              options={{title: 'Todo',headerBackVisible:false}}
-            />
             <Stack.Screen
               name="home"
               component={Home}
               options={{title: 'Home'}}
+            />
+            <Stack.Screen
+              name="todo"
+              component={Todo}
+              options={{title: 'To do List', headerBackVisible: false}}
             />
             <Stack.Screen
               name="webpack"
@@ -82,7 +81,7 @@ class RootComponent extends Component {
             <Stack.Screen
               name="about"
               component={About}
-              options={{title: 'About',headerBackVisible:false}}
+              options={{title: 'About', headerBackVisible: false}}
             />
           </Stack.Navigator>
         </NavigationContainer>
@@ -93,8 +92,8 @@ class RootComponent extends Component {
 
 const mapStateToProps = state => {
   return {
-      actual_screen : state.actual_screen
-  }
-}
+    actual_screen: state.actual_screen,
+  };
+};
 
-export default connect(mapStateToProps,actions)(RootComponent);
+export default connect(mapStateToProps, actions)(RootComponent);

@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 class Resume extends Component {
   
   render() {
-    console.log(Store.getState().colors)
+    
     const {nameText, jobPosition} = this.props;
     const {
       resume,
@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   profileName: {
-    color: Store.getState().colors.secondary.toString(),
+    color: colors.secondary,
     fontSize: 30,
     fontWeight: 'bold',
   },

@@ -6,7 +6,13 @@ import {connect} from 'react-redux';
 class TaskBoard extends Component {
   
   render() {
-    const tasks = Object.values(this.props.tasks);
+    const doneTasks = Object.values(this.props.tasks).filter(function(task){
+      return task.done
+    })
+    const undoneTasks = Object.values(this.props.tasks).filter(function(task){
+      return !task.done
+    })
+    const tasks = [...undoneTasks,...doneTasks]
     return (
       <FlatList
         style={{flex: 1}}

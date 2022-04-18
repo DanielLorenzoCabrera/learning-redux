@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {FlatList, StyleSheet, View} from 'react-native';
+import {FlatList} from 'react-native';
 import TaskItem from './TaskItem';
 import {connect} from 'react-redux';
 
@@ -7,7 +7,6 @@ class TaskBoard extends Component {
   
   render() {
     const tasks = Object.values(this.props.tasks);
-    console.log(tasks)
     return (
       <FlatList
         style={{flex: 1}}
@@ -19,9 +18,6 @@ class TaskBoard extends Component {
   }
 }
 
-const styles = StyleSheet.create({
-  
-});
 
 const mapStateToProps = state => {
   return {

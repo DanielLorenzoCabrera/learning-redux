@@ -12,9 +12,9 @@ class TodoInput extends Component {
   };
 
   submitText = () => {
-    const {content} = this.state;
-    if(content.trim() === ''){
-      Alert.alert("Tasks text can't be empty. Please fill the input")
+    const content = this.state.content.trim();
+    if(content === ''){
+      Alert.alert("Tasks text can't be empty. Please fill in the field")
       this.setState({content : ''})
       return;
     }

@@ -6,13 +6,13 @@ import * as actions from '../../actions/';
 
 class TodoInput extends Component {
   state = {content: ''};
-
   updateText = text => {
     this.setState({content : text})
   };
-
+  
   submitText = () => {
     const content = this.state.content.trim();
+    this.props.change_primary_color('red')
     if(content === ''){
       Alert.alert("Tasks text can't be empty. Please fill in the field")
       this.setState({content : ''})
@@ -21,7 +21,7 @@ class TodoInput extends Component {
     this.props.add_task(content);
     this.setState({content : ''})
   }
-
+  
   render() {
     const {container, inputStyle} = styles;
     return (

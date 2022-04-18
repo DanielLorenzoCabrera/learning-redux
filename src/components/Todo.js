@@ -8,7 +8,6 @@ import colors from '../../config/colors';
 class Todo extends Component {
   render() {
     const {board} = styles;
-   console.log(this.props)
     return (
       <View style={board}>
         <TaskBoard></TaskBoard>

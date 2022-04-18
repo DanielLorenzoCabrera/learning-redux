@@ -17,7 +17,7 @@ class TaskBoard extends Component {
       <FlatList
         style={{flex: 1}}
         data={tasks}
-        renderItem={({item}) =>  <TaskItem taskText={item.content} id={item.id} done={item.done}/>}
+        renderItem={({item}) =>  <TaskItem taskText={item.content} id={item.id} done={item.done} />}
         keyExtractor={item => item.id}
       />
     );

@@ -1,30 +1,36 @@
-import React from 'react';
+import React, {Component} from 'react';
 import {View, Image, Text, StyleSheet} from 'react-native';
 import colors from '../../../config/colors';
+import { connect } from 'react-redux';
 
-const Resume = ({nameText, jobPosition, onPress}) => {
-  const {
-    resume,
-    imageStyle,
-    imageContainer,
-    textContainer,
-    profileName,
-    profileJob,
-  } = styles;
-  const img = require('../../../assets/img/profile.jpg');
+class Resume extends Component {
+  
+  render() {
+    console.log(Store.getState().colors)
+    const {nameText, jobPosition} = this.props;
+    const {
+      resume,
+      imageStyle,
+      imageContainer,
+      textContainer,
+      profileName,
+      profileJob,
+    } = styles;
+    const img = require('../../../assets/img/profile.jpg');
 
-  return (
-    <View style={resume}>
-      <View style={imageContainer}>
-        <Image source={img} style={imageStyle} />
+    return (
+      <View style={resume}>
+        <View style={imageContainer}>
+          <Image source={img} style={imageStyle} />
+        </View>
+        <View style={textContainer}>
+          <Text style={profileName}>{nameText}</Text>
+          <Text style={profileJob}>{jobPosition}</Text>
+        </View>
       </View>
-      <View style={textContainer}>
-        <Text style={profileName}>{nameText}</Text>
-        <Text style={profileJob}>{jobPosition}</Text>
-      </View>
-    </View>
-  );
-};
+    );
+  }
+}
 
 const styles = StyleSheet.create({
   resume: {
@@ -59,7 +65,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   profileName: {
-    color: colors.primary,
+    color: Store.getState().colors.secondary.toString(),
     fontSize: 30,
     fontWeight: 'bold',
   },
@@ -69,4 +75,8 @@ const styles = StyleSheet.create({
   },
 });
 
-export {Resume};
+const mapStateToProps = state => {
+  return state;
+}
+
+export default connect(mapStateToProps)(Resume);

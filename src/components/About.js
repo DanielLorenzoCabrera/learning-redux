@@ -2,9 +2,10 @@ import React, {Component} from 'react';
 import {View, StyleSheet, FlatList} from 'react-native';
 import Navbar from './navbar/Navbar';
 import colors from '../../config/colors';
-import {Resume, Section} from './aboutComponents';
+import { Section} from './aboutComponents';
+import Resume from './aboutComponents/Resume';
 import AboutInfo from './aboutComponents/AboutInfo';
-import RedirectButton from './RedirectButton';
+
 
 class About extends Component {
   render() {

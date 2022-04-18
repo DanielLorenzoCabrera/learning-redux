@@ -12,7 +12,6 @@ class TodoInput extends Component {
   
   submitText = () => {
     const content = this.state.content.trim();
-    this.props.change_primary_color('red')
     if(content === ''){
       Alert.alert("Tasks text can't be empty. Please fill in the field")
       this.setState({content : ''})
@@ -23,6 +22,7 @@ class TodoInput extends Component {
   }
   
   render() {
+    console.log(this)
     const {container, inputStyle} = styles;
     return (
       <View style={container}>

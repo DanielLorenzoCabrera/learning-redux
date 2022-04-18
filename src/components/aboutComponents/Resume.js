@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
 import {View, Image, Text, StyleSheet} from 'react-native';
 import colors from '../../../config/colors';
-import { connect } from 'react-redux';
+import { connect } from 'react-redux'; 
+import * as ChangeColors from '../../actions/ChangeColors'
 
 class Resume extends Component {
-  
+
   render() {
-    
     const {nameText, jobPosition} = this.props;
     const {
       resume,
@@ -75,8 +75,10 @@ const styles = StyleSheet.create({
   },
 });
 
+console.log(styles)
+
 const mapStateToProps = state => {
   return state;
 }
 
-export default connect(mapStateToProps)(Resume);
+export default connect(mapStateToProps,ChangeColors)(Resume);

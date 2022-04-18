@@ -1,4 +1,4 @@
-import React, {Component, useState} from 'react';
+import React, {Component} from 'react';
 import {TextInput, StyleSheet, View, Alert} from 'react-native';
 import {connect} from 'react-redux';
 import colors from '../../../config/colors';

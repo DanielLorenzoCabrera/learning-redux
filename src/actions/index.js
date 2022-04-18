@@ -25,3 +25,9 @@ export const delete_task = (taskId) => {
         payload : taskId
     }
 }
+export const mark_as_done = (taskId) => {
+    return {
+        type : "mark_as_done",
+        payload : taskId
+    }
+}

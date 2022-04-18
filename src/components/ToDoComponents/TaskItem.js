@@ -6,14 +6,16 @@ import * as actions from '../../actions/';
 
 class TaskItem extends Component {
   render() {
-    const {id,taskText, delete_task} = this.props;
+    const {id, taskText, delete_task, done} = this.props;
     const {taskContainer, taskTextStyle, closeTag, closeTagText} = styles;
-    console.log(this);
+    console.log(done)
     return (
       <View style={taskContainer}>
         <Text style={taskTextStyle}>{taskText}</Text>
         <View style={closeTag}>
-          <TouchableHighlight onPress={()=> delete_task(id)} style={{borderRadius: 10}}>
+          <TouchableHighlight
+            onPress={() => delete_task(id)}
+            style={{borderRadius: 10}}>
             <Text style={closeTagText}>X</Text>
           </TouchableHighlight>
         </View>
@@ -41,20 +43,20 @@ const styles = StyleSheet.create({
   closeTag: {
     backgroundColor: colors.secondary,
     borderRadius: 10,
-    flex : 1,
-    marginHorizontal : 10
-    
+    flex: 1,
+    marginHorizontal: 10,
   },
   closeTagText: {
-    flex : 1,
+    flex: 1,
     color: colors.primary,
     fontSize: 30,
     fontWeight: 'bold',
-    textAlign : 'center'
+    textAlign: 'center',
   },
 });
 
 const mapStateToProps = state => {
+  console.log(state)
   return {};
 };
 

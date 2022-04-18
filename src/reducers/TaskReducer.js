@@ -24,8 +24,9 @@ export default (state = INITIAL_STATE, action) => {
       return {...state, tasks: {...updatedTasks}};
     
       case 'mark_as_done':
-          const doneTask = {...tasks[action.payload], done : true}
-          return {...state, tasks: {[action.payload] : doneTask  }}
+          const isDone = state.tasks[action.payload].done;
+          const doneTask = {...state.tasks[action.payload], done : !isDone }
+          return {...state, tasks: {...state.tasks,[action.payload] : doneTask  }}
 
     default:
       return state;

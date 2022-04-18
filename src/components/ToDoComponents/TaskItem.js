@@ -1,23 +1,27 @@
 import React, {Component} from 'react';
-import {StyleSheet, Text, View, TouchableHighlight} from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  TouchableHighlight,
+  TouchableWithoutFeedback,
+} from 'react-native';
 import colors from '../../../config/colors';
 import {connect} from 'react-redux';
 import * as actions from '../../actions/';
+import Tag from './Tag';
 
 class TaskItem extends Component {
   render() {
-    const {id, taskText, delete_task, done} = this.props;
-    const {taskContainer, taskTextStyle, closeTag, closeTagText} = styles;
-    console.log(done)
+    const {id, taskText, delete_task, mark_as_done,done} = this.props;
+    const {taskContainer, taskTextStyle, tags, closeTag, doneTag, isDone} = styles;
+    const isTaskDone = done ? isDone : {};
     return (
       <View style={taskContainer}>
-        <Text style={taskTextStyle}>{taskText}</Text>
-        <View style={closeTag}>
-          <TouchableHighlight
-            onPress={() => delete_task(id)}
-            style={{borderRadius: 10}}>
-            <Text style={closeTagText}>X</Text>
-          </TouchableHighlight>
+        <Text style={[taskTextStyle, isTaskDone]}>{taskText}</Text>
+        <View style={tags}>
+          <Tag iconTag={done ? '↺' : '✓'} style={doneTag} onPress={() => mark_as_done(id)} />
+          <Tag iconTag={'X'} style={closeTag} onPress={() => delete_task(id)} />
         </View>
       </View>
     );
@@ -27,7 +31,6 @@ class TaskItem extends Component {
 const styles = StyleSheet.create({
   taskContainer: {
     backgroundColor: '#fff',
-    padding: 5,
     borderBottomColor: colors.primary,
     borderBottomWidth: 2,
     flexDirection: 'row',
@@ -38,25 +41,34 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     borderRadius: 10,
     fontSize: 20,
-    flex: 10,
+    flex: 6,
+  },
+  tags: {
+    flex: 1,
+    flexDirection: 'column',
+  },
+  doneTag: {
+    backgroundColor: colors.secondary,
+    flex: 1,
+    paddingVertical : 10
   },
   closeTag: {
-    backgroundColor: colors.secondary,
-    borderRadius: 10,
+    paddingVertical : 10,
+    backgroundColor: colors.primary,
     flex: 1,
-    marginHorizontal: 10,
   },
-  closeTagText: {
-    flex: 1,
+  tagText: {
     color: colors.primary,
     fontSize: 30,
     fontWeight: 'bold',
     textAlign: 'center',
   },
+  isDone: {
+    textDecorationLine : 'line-through'
+  }
 });
 
 const mapStateToProps = state => {
-  console.log(state)
   return {};
 };
 

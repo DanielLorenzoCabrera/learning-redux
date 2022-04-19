@@ -11,8 +11,7 @@ class ListItem extends Component {
   }
 
   render() {
-    const {itemContainer, titleStyle, descriptionStyle, titleContainer} =
-      styles;
+    const {itemContainer, titleStyle, descriptionStyle, titleContainer} = styles;
 
     const selection = this.isItemSelected();
     const {id, title, description, navigation, colors} = this.props;
@@ -62,7 +61,7 @@ const styles = StyleSheet.create({
   descriptionStyle: {
     fontSize: 20,
     padding: 10,
-  }
+  },
 });
 
 const mapStateToProps = state => {

@@ -7,7 +7,8 @@ import * as ChangeColors from '../../actions/ChangeColors'
 class Resume extends Component {
 
   render() {
-    const {nameText, jobPosition} = this.props;
+    const {nameText, jobPosition, colors} = this.props;
+    const {primary, secondary} = colors;
     const {
       resume,
       imageStyle,
@@ -18,14 +19,20 @@ class Resume extends Component {
     } = styles;
     const img = require('../../../assets/img/profile.jpg');
 
+    const [imageContainerStyle, profileNameStyle,profileJobStyle] = [
+      {...imageContainer,  borderColor : primary},
+      {...profileName, color : secondary},
+      {...profileJob, color : primary},
+    ]
+
     return (
       <View style={resume}>
-        <View style={imageContainer}>
+        <View style={imageContainerStyle}>
           <Image source={img} style={imageStyle} />
         </View>
         <View style={textContainer}>
-          <Text style={profileName}>{nameText}</Text>
-          <Text style={profileJob}>{jobPosition}</Text>
+          <Text style={profileNameStyle}>{nameText}</Text>
+          <Text style={profileJobStyle}>{jobPosition}</Text>
         </View>
       </View>
     );
@@ -51,13 +58,8 @@ const styles = StyleSheet.create({
     flex: 1,
     maxHeight: 200,
     maxWidth: 200,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 300,
+    borderRadius: 100,
     borderWidth: 3,
-    borderColor: colors.primary,
-    backgroundColor: colors.base,
     padding: 3,
   },
   textContainer: {
@@ -65,12 +67,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   profileName: {
-    color: colors.secondary,
     fontSize: 30,
     fontWeight: 'bold',
   },
   profileJob: {
-    color: colors.primary,
     fontSize: 20,
   },
 });
@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
 
 
 const mapStateToProps = state => {
-  return state;
+  return {colors};
 }
 
 export default connect(mapStateToProps,ChangeColors)(Resume);

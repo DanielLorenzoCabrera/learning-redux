@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import About from './components/About';
-import {Todo} from './components/Todo';
+import Todo from './components/Todo';
 import {
   WebpackItem,
   ReactItem,
@@ -16,8 +16,9 @@ import {
 
 import Home from './components/Home';
 import {Provider, connect} from 'react-redux';
-import {createStore} from 'redux';
-import reducers from './reducers';
+// import {createStore} from 'redux';
+import Store from './Store/Store'
+// import reducers from './reducers';
 import actions from './actions';
 
 const Stack = createNativeStackNavigator();
@@ -25,7 +26,7 @@ const Stack = createNativeStackNavigator();
 class RootComponent extends Component {
   render() {
     return (
-      <Provider store={createStore(reducers)}>
+      <Provider store={Store}>
         <NavigationContainer>
           <Stack.Navigator>
             <Stack.Screen

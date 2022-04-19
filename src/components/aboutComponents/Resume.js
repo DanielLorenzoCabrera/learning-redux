@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
   },
 });
 
-console.log(styles)
+
 
 const mapStateToProps = state => {
   return state;

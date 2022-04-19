@@ -1,10 +1,7 @@
 import React, {Component} from 'react';
 import {TextInput, StyleSheet, View, Alert} from 'react-native';
 import {connect} from 'react-redux';
-import colors from '../../../config/colors';
 import * as actions from '../../actions/';
-import ChangeColors from '../../actions/ChangeColors'
-import Colors from '../ThemeColors/Colors';
 
 class TodoInput extends Component {
   state = {content: ''};
@@ -24,18 +21,21 @@ class TodoInput extends Component {
   };
 
   render() {
-    const {colors} = this.props;
-    console.log(this)
     const {container, inputStyle} = styles;
-
+    const {secondary} = this.props.colors;
+    const containerColors = {
+      borderTopColor: secondary,
+      borderBottomColor: secondary,
+    };
     return (
-      <View style={container}>
+      <View style={[container, containerColors]}>
         <TextInput
           style={inputStyle}
           placeholder={'Write your task'}
           onChangeText={text => this.updateText(text)}
           onSubmitEditing={() => this.submitText()}
-          value={this.state.content}/>
+          value={this.state.content}
+        />
       </View>
     );
   }
@@ -43,9 +43,6 @@ class TodoInput extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    chosenColor: '#fff',
-    borderTopColor: Colors.backgroundColorSecondary,
-    borderBottomColor: colors.secondary,
     borderBottomWidth: 5,
     borderTopWidth: 5,
     flexDirection: 'column',
@@ -59,7 +56,6 @@ const styles = StyleSheet.create({
     fontSize: 20,
   },
 });
-
 
 const mapStateToProps = state => {
   const {colors} = state;

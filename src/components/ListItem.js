@@ -4,17 +4,16 @@ import {
   StyleSheet,
   Text,
   TouchableWithoutFeedback,
-  Button,
 } from 'react-native';
-import colors from './../../config/colors';
 import * as actions from './../actions';
 import {connect} from 'react-redux';
 import RedirectButton from './RedirectButton';
 
 class ListItem extends Component {
+
   isItemSelected() {
-    const {id, selectedId} = this.props;
-    return id === selectedId;
+    const {id, selectedLibraryId} = this.props;
+    return id === selectedLibraryId;
   }
 
   render() {
@@ -25,16 +24,19 @@ class ListItem extends Component {
       titleContainer,
       selected,
       notSelected,
-    } = styles;
+    } = styles
+  
     const selection = this.isItemSelected() ? selected : notSelected;
-    const {id, title, description, navigation} = this.props;
-
+    const {id, title, description, navigation,colors} = this.props;
+    const {primary, secondary, base} = colors;
+    const titleContainerStyle = {...titleContainer,borderBottomColor: secondary, backgroundColor : primary }
+    
     return (
       <View>
-        <TouchableWithoutFeedback onPress={() => this.props.selectLibrary(id)}>
+        <TouchableWithoutFeedback onPress={() => this.props.selectLibrary(id) }>
           <View style={itemContainer}>
-            <View style={titleContainer}>
-              <Text style={titleStyle}>{title}</Text>
+            <View style={titleContainerStyle}>
+              <Text style={[titleStyle, {color : base}]}>{title}</Text>
             </View>
             <View style={selection}>
               <Text style={descriptionStyle}>{description}</Text>
@@ -56,20 +58,17 @@ const styles = StyleSheet.create({
   },
   titleContainer: {
     borderBottomWidth: 6,
-    borderBottomColor: colors.secondary,
+    
   },
   titleStyle: {
     flex: 1,
-    backgroundColor: colors.primary,
     textAlign: 'center',
     fontSize: 20,
     paddingVertical: 10,
     fontWeight: 'bold',
     textTransform: 'uppercase',
-    color: colors.base,
   },
   descriptionStyle: {
-    backgroundColor: colors.base,
     fontSize: 20,
     padding: 10,
   },
@@ -82,9 +81,8 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = state => {
-  return {
-    selectedId: state.selectedLibraryId,
-  };
+  const {selectedLibraryId,colors} = state
+  return {selectedLibraryId,colors}
 };
 
 export default connect(mapStateToProps, actions)(ListItem);

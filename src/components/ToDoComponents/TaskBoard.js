@@ -27,7 +27,7 @@ class TaskBoard extends Component {
 
 const mapStateToProps = state => {
   return {
-    tasks: state.tasks.tasks,
+    tasks: state.tasks.tasks
   };
 };
 

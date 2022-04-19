@@ -1,31 +1,34 @@
 import React, {Component} from 'react';
-import {
-  StyleSheet,
-  Text,
-  View,
-  TouchableHighlight,
-  TouchableWithoutFeedback,
-} from 'react-native';
-import colors from '../../../config/colors';
+import {StyleSheet, Text, View} from 'react-native';
 import {connect} from 'react-redux';
 import * as actions from '../../actions/';
 import Tag from './Tag';
 
 class TaskItem extends Component {
   render() {
-    const {id, taskText, delete_task, mark_as_done, done} = this.props;
+    const {id, taskText, delete_task, mark_as_done, done, colors} = this.props;
+    const {primary, secondary} = colors;
     const {taskContainer, taskTextStyle, tags, closeTag, doneTag, isDone} = styles;
     const isTaskDone = done ? isDone : {};
+    const [taskContainerStyle, doneTagStyle, closeTagStyle] = [
+      {...taskContainer, borderColor: primary},
+      {...doneTag, backgroundColor: secondary},
+      {...closeTag, backgroundColor: primary},
+    ];
     return (
-      <View style={taskContainer}>
+      <View style={taskContainerStyle}>
         <Text style={[taskTextStyle, isTaskDone]}>{taskText}</Text>
         <View style={tags}>
           <Tag
             iconTag={done ? '↺' : '✓'}
-            style={doneTag}
+            style={doneTagStyle}
             onPress={() => mark_as_done(id)}
           />
-          <Tag iconTag={'X'} style={closeTag} onPress={() => delete_task(id)} />
+          <Tag
+            iconTag={'X'}
+            style={closeTagStyle}
+            onPress={() => delete_task(id)}
+          />
         </View>
       </View>
     );
@@ -34,11 +37,10 @@ class TaskItem extends Component {
 
 const styles = StyleSheet.create({
   taskContainer: {
-    backgroundColor: '#fff',
-    borderBottomColor: colors.primary,
-    borderBottomWidth: 2,
+    borderWidth: 0.5,
     flexDirection: 'row',
     alignItems: 'center',
+    backgroundColor: 'transparent',
   },
   taskTextStyle: {
     padding: 20,
@@ -52,20 +54,12 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
   },
   doneTag: {
-    backgroundColor: colors.secondary,
     flex: 1,
     paddingVertical: 10,
   },
   closeTag: {
     paddingVertical: 10,
-    backgroundColor: colors.primary,
     flex: 1,
-  },
-  tagText: {
-    color: colors.primary,
-    fontSize: 30,
-    fontWeight: 'bold',
-    textAlign: 'center',
   },
   isDone: {
     textDecorationLine: 'line-through',
@@ -73,7 +67,7 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = state => {
-  return {};
+  return state;
 };
 
 export default connect(mapStateToProps, actions)(TaskItem);

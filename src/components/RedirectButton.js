@@ -1,19 +1,29 @@
-import React from 'react';
+import React, {Component} from 'react';
 import {TouchableWithoutFeedback, View, Text, StyleSheet} from 'react-native';
 import colors from '../../config/colors';
+import {connect} from 'react-redux';
+import ChangeColor from '../actions/ChangeColors';
 
-const RedirectButton = ({onPress, textButton}) => {
-  const {buttonContainer, text,buttonStyle} = styles;
-  return (
-    <TouchableWithoutFeedback onPress={onPress}>
-      <View style={buttonContainer}>
-        <View style={buttonStyle}>
-          <Text style={text}>{textButton}</Text>
+class RedirectButton extends Component {
+  render() {
+    const {onPress, textButton, colors} = this.props;
+    const {primary, secondary} = colors;
+    const {buttonContainer, text, buttonStyle} = styles;
+    const [buttonTextStyle, textStyle] = [
+      {...buttonStyle, color: primary, backgroundColor: secondary},
+      {...text, color: primary},
+    ];
+    return (
+      <TouchableWithoutFeedback onPress={onPress}>
+        <View style={buttonContainer}>
+          <View style={buttonTextStyle}>
+            <Text style={textStyle}>{textButton}</Text>
+          </View>
         </View>
-      </View>
-    </TouchableWithoutFeedback>
-  );
-};
+      </TouchableWithoutFeedback>
+    );
+  }
+}
 
 const styles = StyleSheet.create({
   buttonContainer: {
@@ -22,20 +32,20 @@ const styles = StyleSheet.create({
     padding: 10,
     alignItems: 'flex-end',
   },
-  buttonStyle : {
-      color: colors.primary,
-      flex: 1 / 2,
-      backgroundColor: colors.secondary,
-      padding: 10,
-      borderRadius: 10,
-
+  buttonStyle: {
+    flex: 1 / 2,
+    padding: 10,
+    borderRadius: 10,
   },
   text: {
     textAlign: 'center',
     fontSize: 20,
     fontWeight: 'bold',
-    color : colors.primary
   },
 });
 
-export default RedirectButton;
+const mapStateToProps = state => {
+  return state;
+};
+
+export default connect(mapStateToProps, ChangeColor)(RedirectButton);

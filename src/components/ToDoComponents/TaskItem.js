@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {connect} from 'react-redux';
-import * as actions from '../../actions/';
 import Tag from './Tag';
 
 class TaskItem extends Component {
@@ -70,4 +69,4 @@ const mapStateToProps = state => {
   return state;
 };
 
-export default connect(mapStateToProps, actions)(TaskItem);
+export default connect(mapStateToProps)(TaskItem);

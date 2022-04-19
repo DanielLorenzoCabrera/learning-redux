@@ -1,8 +1,6 @@
 import React, {Component} from 'react';
 import {TouchableWithoutFeedback, View, Text, StyleSheet} from 'react-native';
-import colors from '../../config/colors';
 import {connect} from 'react-redux';
-import ChangeColor from '../actions/ChangeColors';
 
 class RedirectButton extends Component {
   render() {
@@ -48,4 +46,4 @@ const mapStateToProps = state => {
   return state;
 };
 
-export default connect(mapStateToProps, ChangeColor)(RedirectButton);
+export default connect(mapStateToProps)(RedirectButton);

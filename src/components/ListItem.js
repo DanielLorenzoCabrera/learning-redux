@@ -1,48 +1,40 @@
 import React, {Component} from 'react';
-import {
-  View,
-  StyleSheet,
-  Text,
-  TouchableWithoutFeedback,
-} from 'react-native';
+import {View, StyleSheet, Text, TouchableWithoutFeedback} from 'react-native';
 import * as actions from './../actions';
 import {connect} from 'react-redux';
 import RedirectButton from './RedirectButton';
 
 class ListItem extends Component {
-
   isItemSelected() {
     const {id, selectedLibraryId} = this.props;
-    return id === selectedLibraryId;
+    return id === selectedLibraryId ? {display: 'flex'} : {display: 'none'};
   }
 
   render() {
-    const {
-      itemContainer,
-      titleStyle,
-      descriptionStyle,
-      titleContainer,
-      selected,
-      notSelected,
-    } = styles
-  
-    const selection = this.isItemSelected() ? selected : notSelected;
-    const {id, title, description, navigation,colors} = this.props;
+    const {itemContainer, titleStyle, descriptionStyle, titleContainer} =
+      styles;
+
+    const selection = this.isItemSelected();
+    const {id, title, description, navigation, colors} = this.props;
     const {primary, secondary, base} = colors;
-    const titleContainerStyle = {...titleContainer,borderBottomColor: secondary, backgroundColor : primary }
-    
+    const titleContainerStyle = {
+      ...titleContainer,
+      borderBottomColor: secondary,
+      backgroundColor: primary,
+    };
+
     return (
       <View>
-        <TouchableWithoutFeedback onPress={() => this.props.selectLibrary(id) }>
+        <TouchableWithoutFeedback onPress={() => this.props.selectLibrary(id)}>
           <View style={itemContainer}>
             <View style={titleContainerStyle}>
-              <Text style={[titleStyle, {color : base}]}>{title}</Text>
+              <Text style={[titleStyle, {color: base}]}>{title}</Text>
             </View>
             <View style={selection}>
               <Text style={descriptionStyle}>{description}</Text>
               <RedirectButton
                 textButton={'see more'}
-                onPress={() => navigation.navigate(title,{})}
+                onPress={() => navigation.navigate(title, {})}
               />
             </View>
           </View>
@@ -58,7 +50,6 @@ const styles = StyleSheet.create({
   },
   titleContainer: {
     borderBottomWidth: 6,
-    
   },
   titleStyle: {
     flex: 1,
@@ -71,18 +62,12 @@ const styles = StyleSheet.create({
   descriptionStyle: {
     fontSize: 20,
     padding: 10,
-  },
-  selected: {
-    display: 'flex',
-  },
-  notSelected: {
-    display: 'none',
-  },
+  }
 });
 
 const mapStateToProps = state => {
-  const {selectedLibraryId,colors} = state
-  return {selectedLibraryId,colors}
+  const {selectedLibraryId, colors} = state;
+  return {selectedLibraryId, colors};
 };
 
 export default connect(mapStateToProps, actions)(ListItem);

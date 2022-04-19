@@ -16,7 +16,7 @@ class TaskItem extends Component {
     ];
     return (
       <View style={taskContainerStyle}>
-        <Text style={[taskTextStyle, isTaskDone]}>{taskText}</Text>
+        <Text style={[taskTextStyle, isTaskDone, {color : primary}]}>{taskText}</Text>
         <View style={tags}>
           <Tag
             iconTag={done ? '↺' : '✓'}

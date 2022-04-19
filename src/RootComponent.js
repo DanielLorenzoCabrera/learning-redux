@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import About from './components/About';
+import ChangeTheme from './components/ChangeTheme'
 import Todo from './components/Todo';
 import {
   WebpackItem,
@@ -16,9 +17,7 @@ import {
 
 import Home from './components/Home';
 import {Provider, connect} from 'react-redux';
-// import {createStore} from 'redux';
 import Store from './Store/Store'
-// import reducers from './reducers';
 import actions from './actions';
 
 const Stack = createNativeStackNavigator();
@@ -29,6 +28,11 @@ class RootComponent extends Component {
       <Provider store={Store}>
         <NavigationContainer>
           <Stack.Navigator>
+            <Stack.Screen
+              name="changeTheme"
+              component={ChangeTheme}
+              options={{title: 'Choose your theme'}}
+            />
             <Stack.Screen
               name="home"
               component={Home}
